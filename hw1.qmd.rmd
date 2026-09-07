@@ -1,0 +1,132 @@
+---
+title: "R code for Data Science for Beginners"
+subtitle: " Day 1: Individual Exercise answerkeys"
+author: Sara Beatty
+date: "2024-9-9"  #r Sys.Date()
+output:
+  pdf_document: default
+  html_document: default
+---
+
+## Task 0. Getting things ready for programming
+
+If you want to render a pdf as your quarto output, you would first need to download Latex first: 
+
+Install Latex on your computer:
+ 
+* Mac: [here](https://www.youtube.com/watch?v=nUuW_8Hy1qA) </br>
+* Windows: [here](https://www.youtube.com/watch?v=kSN-gS4SIqc)
+
+
+Please read the following links carefully:
+
+* [Getting started with Quarto](https://www.youtube.com/watch?v=_f3latmOhew&t=34s) </br>
+* [Markdown Basics](https://rmarkdown.rstudio.com/authoring_basics.html) </br>
+* [File naming system](https://style.tidyverse.org/files.html)
+
+
+## Task 1. Modify the author name above to your name
+
+
+## Task 2. Perform the following calculations by writing R commands
+
+
+```{r echo=TRUE, message=TRUE, warning=FALSE}
+# 2-1: Multiply 4 by 30 plus 6, and then raise the answer to the power of 0.5
+(4 * (30 +6)) ^ 0.5 # a sample answer is here
+```
+(4 * 36) ^ 0.5
+```{r}
+# WRITE YOUR ANSWER HERE, in R code chunks
+```
+
+
+### 2-2: Multiply 4 by 30, then add 6 and then raise the answer to the power of 0.5
+
+(( 4 * 30 ) + 6 ) ^ 0.5
+
+Note that 2-1 and 2-2 should give you DIFFERENT answers, because these are different operations. 
+
+
+
+## Task 3. Working with objects 
+
+### 3-1: Create an object called "X1" which is the number 73
+
+X1 = 73
+
+### 3-2: Create another object called "X2" which is the answer to the sum 99 + 38
+
+X2 = ( 99 +38 )
+
+### 3-3: Multiply X1 and X2 together and store the answer as another object called "X3"
+
+X3 = ( X1 * X2 )
+
+### 3-4: Subtract 1 from X3, and then raise the answer to the power of 0.25
+
+( X3 - 1 ) ^ 0.25
+
+Note: the answer should be 10.
+
+
+## Task 4. Calculation using objects
+
+Redo the calculation in 2-1 (Multiply 4 by 30 plus 6, and then raise the answer to the power of 0.5), but this time do so by creating objects. 
+Take the following steps:
+
+
+### 4-1: Create an object called part.1 that is equal to "30 plus 6"
+
+part.1 = ( 30 + 6 )
+
+### 4-2: Create an object called part.2 that is equal to 4 times part.1
+
+part.2 = ( 4 * part.1 )
+
+### 4-3: Raise part.2 to the power of 0.5
+
+( part.2) ^ 0.5
+
+The numerical answer you get here should be the same as your answer for 2.1
+
+
+
+
+## Task 5. Detecting R data types 
+
+**Now, you have seen from the above examples how you should generated your answers and results in `.qmd` and `.rmd` documents. Please continue and finish the following questions.** 
+
+### 5-1 Create a character vector and show that it is character. It'd be nice if you can do it in one line of code
+
+beans <- c("pinto", "navy", "black")
+
+### 5-2 Create a numeric vector and coerce it to a factor vector. It'd be nice if you can do it in one line of code
+
+ages <- c(7, 13, 29, 56, 95)
+
+
+
+## Task 6. Testing NA 
+
+### 6-1 Create a numeric vector with NA 
+
+weights <- c( 105, 180, 136, NA, 270, 215 )
+
+### 6-2 Show me where the NA is located in the vector (using the which() function)
+
+which(is.na(weights))
+
+### 6-1 Create a numeric vector with NaN  
+
+areas <- c(1.5, Nan, 2.8, 3.8, NaN, 6.3)
+
+### 6-2 Show me where the NaN  is located in the vector (using the which() function)
+
+which(is.nan(measurements))
+
+
+
+Finally, execute the entire file. Make sure that you don't get any error messages, such as `"Error: unexpected symbol in ..."` shown in Red. If you receive an error message, it's probably because you forgot to comment out some lines. Comment them out so you won't get any error message. 
+
+
