@@ -1,0 +1,85 @@
+---
+title: "R code for Data Science for Beginners"
+subtitle: " Day 2: Individual Exercise"
+author: Sara Beatty
+date: "2024-9-10"  #r Sys.Date()
+output:
+  pdf_document: default
+  html_document: default
+---
+
+
+## Task 1. `if...else` function 
+
+Mary and John's families (each family has 5 members) are going to a movie and have a hard time deciding who will sit where in a row with 10 seats. You decide to help them sort it out. Please let the Mary's sit in the number 1-5  and the John's in the number 6-10.
+
+Please use `if...else` function to complete the task.
+
+```{r}
+seat <- 4
+
+if (seat >= 1 & seat <= 5) {
+  print("This seat is for Mary's family.")
+} else if (seat >= 6 & seat <= 10) {
+  print("This seat is for John's family.")
+} else {
+  print("That is not a valid seat number.")
+}
+```
+
+## Task 1-2. 
+
+### You want two family members to know each other better so decide to mix them up. Please write a script to let one family to sit next to the other family members in a row. Again use the if..else function. 
+
+for (seat in 1:10) {
+  
+  if (seat %% 2 == 1) {
+    print(paste("Seat", seat, "is for Mary's family"))
+  } else {
+    print(paste("Seat", seat, "is for John's family"))
+  }
+
+
+## Task 2. loop 
+### 2-1 
+We are now in the year of 2022. Please use for loop to print out all the years starting from 2012 to 2022. 
+for (year in 2012:2022) {
+  print(year)
+}
+
+### 2-2
+Please use `paste()` function to write a complete sentence like "The year is 2012". 
+
+paste("The year is", 2012)
+
+### 2-3
+Turns out we don't really like 2020 and 2021 because Covid messed up many parts of our lives. Please don't print out these two years using the next function.
+
+for (year in 2012:2022) {
+  if (year == 2020 | year == 2021) {
+    next
+  }
+  
+  print(paste("The year is", year))
+}
+
+
+## Task 3. functions 
+
+Please write a function that will always add 10 in addition to whatever number you put in.
+
+add_ten <- function(number) {
+  number + 10
+}
+
+### Please write a function that will always identify a missing value in your vector. And please write a complete sentence to show where the missing value is located in the vector
+
+find_missing <- function(vector) {
+  missing_position <- which(is.na(vector))
+  
+  paste("The missing value is located at position", missing_position, "in the vector.")
+}
+
+
+Finally, execute the entire contents of this file. Make sure that you don't get any error message. If you get an error message, it's probably because you forgot to comment out something. 
+
