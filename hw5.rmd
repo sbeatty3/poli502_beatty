@@ -1,0 +1,144 @@
+---
+title: "R code for Data Science for Beginners"
+subtitle: " Day 5: Individual Exercise"
+author: Sara Beatty
+date: "2024-9-13"  #r Sys.Date()
+output:
+  pdf_document: default
+  html_document: default
+---
+
+# clean up your workspace 
+```{r}
+rm(list=ls(all=TRUE)) # remove all the named objects visible in the environment 
+cat("\014") # clean your console
+```
+
+# Load the data 
+```{r}
+world.data = read.csv("Data/world.csv")
+```
+
+Remember that Quarto uses a relative path so always save your data in the same folder (or under the same folder) with your Quarto code. 
+
+## Democracy and female representation 
+
+Do democratic countries (`democ_regime == "Yes"`) have better female representation than non-democratic countries? Please answer this question by showing some graphs to assess the relationship between these two variables. 
+library(dplyr)
+library(ggplot2)
+
+# Boxplot: compare the distribution of female representation
+ggplot(data, aes(x = democ_regime, y = female_representation)) +
+  geom_boxplot() +
+  labs(
+    x = "Democratic regime",
+    y = "Female representation",
+    title = "Female representation in democratic and non-democratic countries"
+  )
+# Bar graph: compare average female representation
+data %>%
+  group_by(democ_regime) %>%
+  summarise(
+    average_female_representation = mean(female_representation, na.rm = TRUE)
+  ) %>%
+  ggplot(aes(x = democ_regime, y = average_female_representation)) +
+  geom_col() +
+  labs(
+    x = "Democratic regime",
+    y = "Average female representation",
+    title = "Average female representation by regime type"
+  )
+### Initial data clean up
+
+Analyze y
+```{r}
+summary(world.data $ women09)
+```
+summary(world.data$women09)
+Analyze x
+```{r}
+summary(world.data $ democ_regime)
+```
+summary(world.data$democ_regime)
+Note: There are some missing values. Labels are not intuitive. So, we will deal with these two first.
+
+
+### Create a smaller data set that omits NA observations.
+```{r}
+women.dem <- world.data[ is.na(world.data $ women09) == FALSE & is.na(world.data $ democ_regime) == FALSE, ]
+```
+
+Let's make sure that we did this correctly. 
+
+```{r}
+summary(women.dem $ women09)
+summary(women.dem $ democ_regime)
+```
+
+We can see that NA cases have been correctly removed. 
+
+
+### Re-labeling the values
+```{r}
+women.dem $ dem.dum <- factor(women.dem $ democ_regime, 
+                              levels = c("Yes", "No"),
+                              labels = c("Democracy", "Autocracy"))
+
+rm(world.data) # we don't need this anymore
+```
+
+## Q1: Describe Y (numerically and graphically) 
+
+
+### Numerical summary
+
+summary(women.dem$women09)
+
+### Graphical summary
+
+hist(women.dem$women09,
+     main = "Distribution of Female Representation",
+     xlab = "Female Representation (women09)",
+     col = "lightblue")
+
+## Q2: Describe X (numerically and graphically) 
+
+
+### Numerical summary (frequency table)
+
+table(women.dem$dem.dum)
+
+### Graphical summary (bar chart)
+
+barplot(table(women.dem$dem.dum),
+        main = "Number of Countries by Regime Type",
+        xlab = "Regime Type",
+        ylab = "Number of Countries",
+        col = "lightblue")
+
+## Q3: Describe X-Y graphically
+
+### Histograms
+
+par(mfrow = c(1, 2))
+
+hist(women.dem$women09[women.dem$dem.dum == "Democracy"],
+     main = "Female Representation: Democracies",
+     xlab = "Women in Parliament (%)",
+     xlim = c(0, 60),
+     col = "lightblue")
+
+hist(women.dem$women09[women.dem$dem.dum == "Autocracy"],
+     main = "Female Representation: Autocracies",
+     xlab = "Women in Parliament (%)",
+     xlim = c(0, 60),
+     col = "lightpink")
+
+### Box-plots
+
+boxplot(women09 ~ dem.dum,
+        data = women.dem,
+        main = "Female Representation by Regime Type",
+        xlab = "Regime Type",
+        ylab = "Women in Parliament (%)",
+        col = c("lightblue", "lightpink"))
